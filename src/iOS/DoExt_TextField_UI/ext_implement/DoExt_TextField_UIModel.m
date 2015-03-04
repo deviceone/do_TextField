@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 DoExt. All rights reserved.
 //
 
-#import "Do_TextField_UIModel.h"
+#import "DoExt_TextField_UIModel.h"
 #import "doProperty.h"
 
-@implementation Do_TextField_UIModel
+@implementation DoExt_TextField_UIModel
 
 #pragma mark - 注册属性（--属性定义--）
 /*

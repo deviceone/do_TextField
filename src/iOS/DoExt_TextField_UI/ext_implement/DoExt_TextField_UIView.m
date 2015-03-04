@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 DoExt. All rights reserved.
 //
 
-#import "Do_TextField_UIView.h"
+#import "DoExt_TextField_UIView.h"
 
 #import "doIPage.h"
 #import "doUIModuleHelper.h"
@@ -14,7 +14,7 @@
 #import "doTextHelper.h"
 #import "doDefines.h"
 
-@implementation Do_TextField_View
+@implementation DoExt_TextField_View
 {
     float keyBoardHeight;
 }
