@@ -27,7 +27,7 @@ import extdefine.Do_TextField_MAbstract;
  * #如何调用组件自定义事件？可以通过如下方法触发事件：
  * this.model.getEventCenter().fireEvent(_messageName, jsonResult);
  * 参数解释：@_messageName字符串事件名称，@jsonResult传递事件参数对象； 获取DoInvokeResult对象方式new
- * DoInvokeResult();
+ * DoInvokeResult(this.model.getUniqueKey());
  */
 public class Do_TextField_View extends EditText implements DoIUIModuleView, Do_TextField_IMethod, OnFocusChangeListener, TextWatcher {
 	private static final String INPUT_TYPE_ASC = "ASC"; // 支持ASCII的默认键盘
@@ -146,7 +146,7 @@ public class Do_TextField_View extends EditText implements DoIUIModuleView, Do_T
 	 *                    _scriptEngine.callback(_callbackFuncName,
 	 *                    _invokeResult);
 	 *                    参数解释：@_callbackFuncName回调函数名，@_invokeResult传递回调函数参数对象；
-	 *                    获取DoInvokeResult对象方式new DoInvokeResult();
+	 *                    获取DoInvokeResult对象方式new DoInvokeResult(this.model.getUniqueKey());
 	 */
 	@Override
 	public boolean invokeAsyncMethod(String _methodName, DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, String _callbackFuncName) {
@@ -162,7 +162,6 @@ public class Do_TextField_View extends EditText implements DoIUIModuleView, Do_T
 		// ...do something
 	}
 
-	// =========================================================================
 	private void doTextFieldView_TextChanged() {
 		if (this.model.getCurrentPage().getScriptEngine() != null) { // 去除脚本还未加载时NULL的情况
 			DoInvokeResult _invokeResult = new DoInvokeResult(this.model.getUniqueKey());
