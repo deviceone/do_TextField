@@ -1,5 +1,6 @@
-D:\MyWork\designer_comp\do_TextField\src\designer\do_TextField\do_TextField\bin\Debug\doUIViewDesign.TextField.dll
-D:\MyWork\designer_comp\do_TextField\src\designer\do_TextField\do_TextField\bin\Debug\doUIViewDesign.TextField.pdb
 D:\MyWork\designer_comp\do_TextField\src\designer\do_TextField\do_TextField\bin\Debug\doControlLib.dll
-D:\MyWork\designer_comp\do_TextField\src\designer\do_TextField\do_TextField\obj\Debug\doUIViewDesign.TextField.dll
-D:\MyWork\designer_comp\do_TextField\src\designer\do_TextField\do_TextField\obj\Debug\doUIViewDesign.TextField.pdb
+D:\MyWork\designer_comp\do_TextField\src\designer\do_TextField\do_TextField\bin\Debug\doUIViewDesign.do_TextField.dll
+D:\MyWork\designer_comp\do_TextField\src\designer\do_TextField\do_TextField\bin\Debug\doUIViewDesign.do_TextField.pdb
+D:\MyWork\designer_comp\do_TextField\src\designer\do_TextField\do_TextField\obj\Debug\do_TextField.csprojResolveAssemblyReference.cache
+D:\MyWork\designer_comp\do_TextField\src\designer\do_TextField\do_TextField\obj\Debug\doUIViewDesign.do_TextField.dll
+D:\MyWork\designer_comp\do_TextField\src\designer\do_TextField\do_TextField\obj\Debug\doUIViewDesign.do_TextField.pdb
