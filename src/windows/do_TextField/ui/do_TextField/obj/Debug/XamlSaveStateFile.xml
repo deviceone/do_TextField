@@ -1,0 +1,7 @@
+<XamlCompilerSaveState>
+  <ReferenceAssemblyList>
+    <LocalAssembly PathName="c:\users\yi\desktop\do_textfield\ui\do_textfield\obj\debug\intermediatexaml\do_textfield.dll" HashGuid="1dba21a0-9a7d-876b-a05e-1ba2493f43de" />
+    <ReferenceAssembly PathName="c:\users\yi\desktop\do_textfield\dll\docore.dll" HashGuid="7e160c76-1e01-596a-16c0-4ac20d1b16c4" />
+    <ReferenceAssembly PathName="c:\program files (x86)\reference assemblies\microsoft\framework\.netportable\v4.6\profile\profile32\mscorlib.dll" HashGuid="95b3d13b-e7bf-e4c5-4c77-8abe05a06981" />
+  </ReferenceAssemblyList>
+</XamlCompilerSaveState>
