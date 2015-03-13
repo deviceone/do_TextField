@@ -14,7 +14,7 @@
 #import "doTextHelper.h"
 #import "doDefines.h"
 
-@implementation DoExt_TextField_View
+@implementation DoExt_TextField_UIView
 {
     float keyBoardHeight;
 }
