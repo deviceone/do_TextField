@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DoExt_TextField_IView.h"
-#import "DoExt_TextField_UIModel.h"
+#import "do_TextField_IView.h"
+#import "do_TextField_UIModel.h"
 #import "doIUIModuleView.h"
 
-@interface DoExt_TextField_UIView : UITextField<DoExt_TextField_IView,doIUIModuleView,UITextFieldDelegate>
+@interface do_TextField_UIView : UITextField<do_TextField_IView,doIUIModuleView,UITextFieldDelegate>
 //可根据具体实现替换UIView
 {
     @private
-    __weak DoExt_TextField_UIModel *_model;
+    __weak do_TextField_UIModel *_model;
 }
 
 @end

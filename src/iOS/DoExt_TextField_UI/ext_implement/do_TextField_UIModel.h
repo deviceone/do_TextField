@@ -7,6 +7,6 @@
 //
 #import "doUIModule.h"
 
-@interface DoExt_TextField_UIModel : doUIModule
+@interface do_TextField_UIModel : doUIModule
 
 @end

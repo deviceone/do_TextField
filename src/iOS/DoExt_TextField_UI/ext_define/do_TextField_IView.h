@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol DoExt_TextField_IView <NSObject>
+@protocol do_TextField_IView <NSObject>
 
 @required
 //属性方法
