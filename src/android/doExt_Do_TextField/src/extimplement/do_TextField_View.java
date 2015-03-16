@@ -19,8 +19,8 @@ import core.interfaces.DoIScriptEngine;
 import core.interfaces.DoIUIModuleView;
 import core.object.DoInvokeResult;
 import core.object.DoUIModule;
-import extdefine.Do_TextField_IMethod;
-import extdefine.Do_TextField_MAbstract;
+import extdefine.do_TextField_IMethod;
+import extdefine.do_TextField_MAbstract;
 
 /**
  * 自定义扩展UIView组件实现类，此类必须继承相应VIEW类，并实现DoIUIModuleView,Do_TextField_IMethod接口；
@@ -29,7 +29,7 @@ import extdefine.Do_TextField_MAbstract;
  * 参数解释：@_messageName字符串事件名称，@jsonResult传递事件参数对象； 获取DoInvokeResult对象方式new
  * DoInvokeResult(this.model.getUniqueKey());
  */
-public class Do_TextField_View extends EditText implements DoIUIModuleView, Do_TextField_IMethod, OnFocusChangeListener, TextWatcher {
+public class do_TextField_View extends EditText implements DoIUIModuleView, do_TextField_IMethod, OnFocusChangeListener, TextWatcher {
 	private static final String INPUT_TYPE_ASC = "ASC"; // 支持ASCII的默认键盘
 	private static final String INPUT_TYPE_PHONENUMBER = "PHONENUMBER"; // 标准电话键盘，支持＋＊＃字符
 	private static final String INPUT_TYPE_URL = "URL"; // URL键盘，支持.com按钮
@@ -41,11 +41,11 @@ public class Do_TextField_View extends EditText implements DoIUIModuleView, Do_T
 	/**
 	 * 每个UIview都会引用一个具体的model实例；
 	 */
-	private Do_TextField_MAbstract model;
+	private do_TextField_MAbstract model;
 	private Drawable mClearDrawable;
 	private boolean hasFoucs;
 
-	public Do_TextField_View(Context context) {
+	public do_TextField_View(Context context) {
 		super(context);
 		this.setSingleLine(true);
 	}
@@ -55,7 +55,7 @@ public class Do_TextField_View extends EditText implements DoIUIModuleView, Do_T
 	 */
 	@Override
 	public void loadView(DoUIModule _doUIModule) throws Exception {
-		this.model = (Do_TextField_MAbstract) _doUIModule;
+		this.model = (do_TextField_MAbstract) _doUIModule;
 		// 默认设置隐藏图标
 		setClearIconVisible(false);
 		// 设置焦点改变的监听

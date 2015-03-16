@@ -3,5 +3,5 @@ package extdefine;
 /**
  * 声明自定义扩展组件方法
  */
-public interface Do_TextField_IMethod {
+public interface do_TextField_IMethod {
 }
