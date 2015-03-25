@@ -115,7 +115,7 @@
     }
 }
 - (void)change_password:(NSString *)newValue{
-    if([newValue isEqualToString:@"true"])
+    if([newValue isEqualToString:@"true"] || [newValue isEqualToString:@"1"])
     {
         self.secureTextEntry = YES;
     }
@@ -125,7 +125,7 @@
     }
 }
 - (void)change_clearAll:(NSString *)newValue{
-    if([newValue isEqualToString:@"true"])
+    if([newValue isEqualToString:@"true"] || [newValue isEqualToString:@"1"])
     {
         self.clearButtonMode = UITextFieldViewModeWhileEditing;
     }
