@@ -32,6 +32,7 @@
 - (void) OnDispose
 {
     _model = nil;
+    _myFontStyle = nil;
     //自定义的全局属性
 }
 //实现布局
@@ -71,7 +72,7 @@
 }
 - (void)change_fontStyle:(NSString *)newValue{
     _myFontStyle = [NSString stringWithFormat:@"%@",newValue];
-    if (self.text == nil) return;
+    if (self.text==nil || [self.text isEqualToString:@""]) return;
     NSRange range = {0,[self.text length]};
     NSMutableAttributedString *str = [self.attributedText mutableCopy];
     [str removeAttribute:NSUnderlineStyleAttributeName range:range];
