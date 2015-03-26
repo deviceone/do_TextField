@@ -17,6 +17,7 @@
 @implementation do_TextField_UIView
 {
     float keyBoardHeight;
+    NSString *_myFontStyle;
 }
 
 #pragma mark - doIUIModuleView协议方法（必须）
@@ -53,6 +54,8 @@
  */
 - (void)change_text:(NSString *)newValue{
     [self setText:newValue];
+    if(_myFontStyle)
+        [self change_fontStyle:_myFontStyle];
 }
 - (void)change_fontColor:(NSString *)newValue{
     [self setTextColor:[doUIModuleHelper GetColorFromString:newValue :[UIColor blackColor]]];
@@ -63,34 +66,36 @@
         font = [UIFont systemFontOfSize:[[_model GetProperty:@"fontSize"].DefaultValue intValue]];
     }
     int _intFontSize = [doUIModuleHelper GetDeviceFontSize:[[doTextHelper Instance] StrToInt:newValue :[[_model GetProperty:@"fontSize"].DefaultValue intValue]] :_model.XZoom :_model.YZoom];
+    
     self.font = [font fontWithSize:_intFontSize];
 }
 - (void)change_fontStyle:(NSString *)newValue{
-    if ([UIDevice currentDevice].systemVersion.floatValue >=6.0) {
-        NSRange range = {0,[self.text length]};
-        NSMutableAttributedString *str = [self.attributedText mutableCopy];
-        [str removeAttribute:NSUnderlineStyleAttributeName range:range];
-        self.attributedText = str;
+    _myFontStyle = [NSString stringWithFormat:@"%@",newValue];
+    if (self.text == nil) return;
+    NSRange range = {0,[self.text length]};
+    NSMutableAttributedString *str = [self.attributedText mutableCopy];
+    [str removeAttribute:NSUnderlineStyleAttributeName range:range];
+    self.attributedText = str;
+    
+    float fontSize = self.font.pointSize;
+    if([newValue isEqualToString:@"normal"])
+        [self setFont:[UIFont systemFontOfSize:fontSize]];
+    else if([newValue isEqualToString:@"bold"])
+        [self setFont:[UIFont boldSystemFontOfSize:fontSize]];
+    else if([newValue isEqualToString:@"italic"])
+        [self setFont:[UIFont italicSystemFontOfSize:fontSize]];
+    else if([newValue isEqualToString:@"underline"])
+    {
+        NSMutableAttributedString *content = [self.attributedText mutableCopy];
+        NSRange contentRange = {0,[content length]};
+        [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
+        self.attributedText = content;
+        [content endEditing];
     }
-    float fontSize = self.font.pointSize;//The receiver’s point size, or the effective vertical point size for a font with a nonstandard matrix. (read-only)
-    if([newValue isEqualToString:@"normal"]){
-        self.font = [UIFont systemFontOfSize:fontSize];
-    }else if([newValue isEqualToString:@"bold"]){
-        self.font = [UIFont boldSystemFontOfSize:fontSize];
-    }else if([newValue isEqualToString:@"italic"]){
-        self.font = [UIFont italicSystemFontOfSize:fontSize];
-    }else if([newValue isEqualToString:@"underline"]){
-        if (self.text == nil) {
-            return;
-        }
-        if([UIDevice currentDevice].systemVersion.floatValue >= 6.0){
-            NSMutableAttributedString * content = [[NSMutableAttributedString alloc]initWithString:self.text];
-            NSRange contentRange = {0,[content length]};
-            [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
-            self.attributedText = content;
-        }else{
-            self.font = [UIFont systemFontOfSize:fontSize];
-        }
+    else
+    {
+        NSString *mesg = [NSString stringWithFormat:@"不支持字体:%@",newValue];
+        [NSException raise:@"do_TextField" format:mesg,@""];
     }
 }
 - (void)change_hint:(NSString *)newValue
