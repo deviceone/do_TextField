@@ -18,7 +18,7 @@
 {
     float keyBoardHeight;
     NSString *_myFontStyle;
-    NSString *_oldFontStyle;
+    NSString *_oldFontStyel;
 }
 
 #pragma mark - doIUIModuleView协议方法（必须）
@@ -33,6 +33,7 @@
 //销毁所有的全局对象
 - (void) OnDispose
 {
+    _model = nil;
     _myFontStyle = nil;
     //自定义的全局属性
 }
@@ -84,14 +85,14 @@
         [self setFont:[UIFont systemFontOfSize:fontSize]];
     else if([newValue isEqualToString:@"bold"])
     {
-        if([_oldFontStyle isEqualToString:@"italic"])
+        if([_oldFontStyel isEqualToString:@"italic"])
             [self setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:fontSize]];
         else
             [self setFont:[UIFont boldSystemFontOfSize:fontSize]];
     }
     else if([newValue isEqualToString:@"italic"])
     {
-        if([_oldFontStyle isEqualToString:@"bold"])
+        if([_oldFontStyel isEqualToString:@"bold"])
             [self setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:fontSize]];
         else
             [self setFont:[UIFont italicSystemFontOfSize:fontSize]];
@@ -109,7 +110,7 @@
         NSString *mesg = [NSString stringWithFormat:@"不支持字体:%@",newValue];
         [NSException raise:@"do_TextField" format:mesg,@""];
     }
-    _oldFontStyle = newValue;
+    _oldFontStyel = newValue;
 }
 - (void)change_hint:(NSString *)newValue
 {
@@ -282,5 +283,4 @@
     //获取model对象
     return _model;
 }
-
 @end
