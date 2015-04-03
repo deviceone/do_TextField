@@ -18,6 +18,7 @@
 {
     float keyBoardHeight;
     NSString *_myFontStyle;
+    NSString *_oldFontStyle;
 }
 
 #pragma mark - doIUIModuleView协议方法（必须）
@@ -27,11 +28,11 @@
     _model = (typeof(_model)) _doUIModule;
     self.delegate =self;
     self.textColor = [UIColor blackColor];
+    [self change_fontSize:[_model GetProperty:@"fontSize"].DefaultValue];
 }
 //销毁所有的全局对象
 - (void) OnDispose
 {
-    _model = nil;
     _myFontStyle = nil;
     //自定义的全局属性
 }
@@ -82,9 +83,19 @@
     if([newValue isEqualToString:@"normal"])
         [self setFont:[UIFont systemFontOfSize:fontSize]];
     else if([newValue isEqualToString:@"bold"])
-        [self setFont:[UIFont boldSystemFontOfSize:fontSize]];
+    {
+        if([_oldFontStyle isEqualToString:@"italic"])
+            [self setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:fontSize]];
+        else
+            [self setFont:[UIFont boldSystemFontOfSize:fontSize]];
+    }
     else if([newValue isEqualToString:@"italic"])
-        [self setFont:[UIFont italicSystemFontOfSize:fontSize]];
+    {
+        if([_oldFontStyle isEqualToString:@"bold"])
+            [self setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:fontSize]];
+        else
+            [self setFont:[UIFont italicSystemFontOfSize:fontSize]];
+    }
     else if([newValue isEqualToString:@"underline"])
     {
         NSMutableAttributedString *content = [self.attributedText mutableCopy];
@@ -98,6 +109,7 @@
         NSString *mesg = [NSString stringWithFormat:@"不支持字体:%@",newValue];
         [NSException raise:@"do_TextField" format:mesg,@""];
     }
+    _oldFontStyle = newValue;
 }
 - (void)change_hint:(NSString *)newValue
 {
