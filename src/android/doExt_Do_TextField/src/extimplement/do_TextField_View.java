@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
@@ -57,6 +58,7 @@ public class do_TextField_View extends EditText implements DoIUIModuleView, do_T
 	@Override
 	public void loadView(DoUIModule _doUIModule) throws Exception {
 		this.model = (do_TextField_MAbstract) _doUIModule;
+		this.setTextSize(TypedValue.COMPLEX_UNIT_PX, DoUIModuleHelper.getDeviceFontSize(_doUIModule, "9"));
 		// 默认设置隐藏图标
 		setClearIconVisible(false);
 		// 设置焦点改变的监听
