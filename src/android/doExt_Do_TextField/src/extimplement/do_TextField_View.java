@@ -49,6 +49,8 @@ public class do_TextField_View extends EditText implements DoIUIModuleView, do_T
 	public do_TextField_View(Context context) {
 		super(context);
 		this.setSingleLine(true);
+		this.setBackgroundDrawable(null);
+		this.setPadding(1, 0, 1, 0);
 	}
 
 	/**
@@ -62,7 +64,6 @@ public class do_TextField_View extends EditText implements DoIUIModuleView, do_T
 		setClearIconVisible(false);
 		// 设置焦点改变的监听
 		setOnFocusChangeListener(this);
-		this.setPadding(this.getPaddingLeft(), 0, this.getPaddingRight(), 0);
 	}
 
 	/**
@@ -149,7 +150,8 @@ public class do_TextField_View extends EditText implements DoIUIModuleView, do_T
 	 *                    _scriptEngine.callback(_callbackFuncName,
 	 *                    _invokeResult);
 	 *                    参数解释：@_callbackFuncName回调函数名，@_invokeResult传递回调函数参数对象；
-	 *                    获取DoInvokeResult对象方式new DoInvokeResult(this.model.getUniqueKey());
+	 *                    获取DoInvokeResult对象方式new
+	 *                    DoInvokeResult(this.model.getUniqueKey());
 	 */
 	@Override
 	public boolean invokeAsyncMethod(String _methodName, DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, String _callbackFuncName) {
