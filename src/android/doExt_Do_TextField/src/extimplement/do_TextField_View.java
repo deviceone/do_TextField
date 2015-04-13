@@ -48,6 +48,7 @@ public class do_TextField_View extends EditText implements DoIUIModuleView, do_T
 	public do_TextField_View(Context context) {
 		super(context);
 		this.setSingleLine(true);
+		this.setPadding(10, 0, 1, 0);
 	}
 
 	/**
