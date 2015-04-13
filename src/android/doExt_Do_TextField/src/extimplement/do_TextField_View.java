@@ -62,7 +62,7 @@ public class do_TextField_View extends EditText implements DoIUIModuleView, do_T
 		setClearIconVisible(false);
 		// 设置焦点改变的监听
 		setOnFocusChangeListener(this);
-		this.setPadding((int)(10 * this.model.getXZoom()), 0, 1, 0);
+		this.setPadding(this.getPaddingLeft(), 0, this.getPaddingRight(), 0);
 	}
 
 	/**
