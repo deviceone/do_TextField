@@ -254,7 +254,7 @@
     //change事件
     doInvokeResult *_invokeResult = [[doInvokeResult alloc]init:_model.UniqueKey];
     [_invokeResult SetResultText:self.text];
-    [_model.EventCenter FireEvent:@"changed":_invokeResult];
+    [_model.EventCenter FireEvent:@"textChanged":_invokeResult];
 }
 
 #pragma mark - doIUIModuleView协议方法（必须）<大部分情况不需修改>
