@@ -28,6 +28,7 @@
     _model = (typeof(_model)) _doUIModule;
     self.delegate =self;
     self.textColor = [UIColor blackColor];
+    self.backgroundColor = [UIColor clearColor];
     [self change_fontSize:[_model GetProperty:@"fontSize"].DefaultValue];
 }
 //销毁所有的全局对象
