@@ -17,5 +17,5 @@
     @private
     __weak do_TextField_UIModel *_model;
 }
-
+- (void) registerForKeyboardNotifications;
 @end
