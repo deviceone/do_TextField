@@ -1,4 +1,4 @@
-package extimplement;
+package doext.implement;
 
 import java.util.Map;
 
@@ -20,8 +20,8 @@ import core.interfaces.DoIScriptEngine;
 import core.interfaces.DoIUIModuleView;
 import core.object.DoInvokeResult;
 import core.object.DoUIModule;
-import extdefine.do_TextField_IMethod;
-import extdefine.do_TextField_MAbstract;
+import doext.define.do_TextField_IMethod;
+import doext.define.do_TextField_MAbstract;
 
 /**
  * 自定义扩展UIView组件实现类，此类必须继承相应VIEW类，并实现DoIUIModuleView,Do_TextField_IMethod接口；
