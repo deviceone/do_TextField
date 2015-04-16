@@ -14,11 +14,66 @@
 #import "doTextHelper.h"
 #import "doDefines.h"
 
+@interface DelegateClass : NSObject<UITextFieldDelegate>
+
+@property(nonatomic, weak)doUIModule *model;
+@property(nonatomic, assign)float keyBoardHeight;
+
+@end
+
+@implementation DelegateClass
+{
+    
+}
+
+#pragma mark - UITextField delegate
+-(BOOL)textField:(UITextField *)textFiled shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    UIViewController *curController = (UIViewController *)_model.CurrentPage.PageView;
+    [UIView animateWithDuration:0.3 animations:^{
+        curController.view.frame = CGRectMake(0, 0, curController.view.frame.size.width, curController.view.frame.size.height);
+    }];
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    do_TextField_UIView *doTextField = (do_TextField_UIView *)textField;
+    [doTextField registerForKeyboardNotifications];
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    UIViewController *curController  = (UIViewController *)_model.CurrentPage.PageView;
+    CGRect curRect1 = [textField.superview convertRect:textField.frame toView:curController.view];
+    if (curRect1.origin.y+curRect1.size.height+_keyBoardHeight >curController.view.frame.size.height) {
+        float moveHeight = (curRect1.origin.y+curRect1.size.height+_keyBoardHeight - curController.view.frame.size.height+20);
+        [UIView animateWithDuration:0.3 animations:^{
+            curController.view.frame = CGRectMake(0, -moveHeight, curController.view.frame.size.width, curController.view.frame.size.height);
+        }];
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:textField];
+}
+
+@end
+
 @implementation do_TextField_UIView
 {
     float keyBoardHeight;
     NSString *_myFontStyle;
     NSString *_oldFontStyel;
+    DelegateClass *_delegateClass;
 }
 
 #pragma mark - doIUIModuleView协议方法（必须）
@@ -26,9 +81,12 @@
 - (void) LoadView: (doUIModule *) _doUIModule
 {
     _model = (typeof(_model)) _doUIModule;
-    self.delegate =self;
+    _delegateClass = [[DelegateClass alloc] init];
+    //为了解决iOS7.0环境下，delegate = self，cpu使用接近100%的问题。iOS7.1之后的版本无问题
+    self.delegate =_delegateClass;
+    _delegateClass.model = _model;
+    
     self.textColor = [UIColor blackColor];
-    self.backgroundColor = [UIColor clearColor];
     [self change_fontSize:[_model GetProperty:@"fontSize"].DefaultValue];
 }
 //销毁所有的全局对象
@@ -201,6 +259,7 @@
             curController.view.frame = CGRectMake(0, -moveHeight, curController.view.frame.size.width, curController.view.frame.size.height);
         }];
     }
+    ((DelegateClass *)self.delegate).keyBoardHeight = keyBoardHeight;
 }
 - (void) keyboardWasHidden:(NSNotification *) notif
 {
@@ -208,45 +267,6 @@
     [UIView animateWithDuration:0.3 animations:^{
         curController.view.frame = CGRectMake(0, 0, curController.view.frame.size.width, curController.view.frame.size.height);
     }];
-}
-
-#pragma mark - UITextField delegate
--(BOOL)textField:(UITextField *)textFiled shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self resignFirstResponder];
-    UIViewController *curController = (UIViewController *)_model.CurrentPage.PageView;
-    [UIView animateWithDuration:0.3 animations:^{
-        curController.view.frame = CGRectMake(0, 0, curController.view.frame.size.width, curController.view.frame.size.height);
-    }];
-    return YES;
-}
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    [self registerForKeyboardNotifications];
-    return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    UIViewController *curController  = (UIViewController *)_model.CurrentPage.PageView;
-    CGRect curRect1 = [self.superview convertRect:self.frame toView:curController.view];
-    if (curRect1.origin.y+curRect1.size.height+keyBoardHeight >curController.view.frame.size.height) {
-        float moveHeight = (curRect1.origin.y+curRect1.size.height+keyBoardHeight - curController.view.frame.size.height+20);
-        [UIView animateWithDuration:0.3 animations:^{
-            curController.view.frame = CGRectMake(0, -moveHeight, curController.view.frame.size.width, curController.view.frame.size.height);
-        }];
-    }
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)textFieldChanged:(id)sender
