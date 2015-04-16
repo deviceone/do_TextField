@@ -1,4 +1,4 @@
-﻿package doext.implement;
+package doext.implement;
 
 import java.util.Map;
 
@@ -19,16 +19,17 @@ import core.interfaces.DoIScriptEngine;
 import core.interfaces.DoIUIModuleView;
 import core.object.DoInvokeResult;
 import core.object.DoUIModule;
-import extdefine.do_TextField_IMethod;
-import extdefine.do_TextField_MAbstract;
+import doext.define.do_TextField_IMethod;
+import doext.define.do_TextField_MAbstract;
+
 
 /**
- * 自定义扩展UIView组件实现类，此类必须继承相应VIEW类，并实现DoIUIModuleView,Do_TextField_IMethod接口；
- * #如何调用组件自定义事件？可以通过如下方法触发事件：
- * this.model.getEventCenter().fireEvent(_messageName, jsonResult);
- * 参数解释：@_messageName字符串事件名称，@jsonResult传递事件参数对象； 获取DoInvokeResult对象方式new
- * DoInvokeResult(this.model.getUniqueKey());
- */
+* 自定义扩展UIView组件实现类，此类必须继承相应VIEW类，并实现DoIUIModuleView,Do_TextField_IMethod接口；
+* #如何调用组件自定义事件？可以通过如下方法触发事件：
+* this.model.getEventCenter().fireEvent(_messageName, jsonResult);
+* 参数解释：@_messageName字符串事件名称，@jsonResult传递事件参数对象； 获取DoInvokeResult对象方式new
+* DoInvokeResult(this.model.getUniqueKey());
+*/
 public class do_TextField_View extends EditText implements DoIUIModuleView, do_TextField_IMethod, OnFocusChangeListener, TextWatcher {
 	private static final String INPUT_TYPE_ASC = "ASC"; // 支持ASCII的默认键盘
 	private static final String INPUT_TYPE_PHONENUMBER = "PHONENUMBER"; // 标准电话键盘，支持＋＊＃字符
