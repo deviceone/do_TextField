@@ -17,6 +17,6 @@
       <RootProperty Name="Height" />
       <RootProperty Name="Visibility" />
     </RootType>
-    <RootType FullName="doExt.do_TextField.UserControlEx.TextFieldEx" />
+    <RootType FullName="do_TextField.do_TextField.UserControlEx.TextFieldEx" />
   </Roots.RootTypes>
 </Roots>

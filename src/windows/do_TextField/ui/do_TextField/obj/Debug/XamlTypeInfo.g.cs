@@ -126,13 +126,13 @@ namespace do_TextField.do_TextField_XamlTypeInfo
         private void InitTypeTables()
         {
             _typeNameTable = new string[4];
-            _typeNameTable[0] = "doExt.do_TextField.UserControlEx.TextFieldEx";
+            _typeNameTable[0] = "do_TextField.do_TextField.UserControlEx.TextFieldEx";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.UserControl";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.TextBox";
             _typeNameTable[3] = "Windows.UI.Xaml.Controls.PasswordBox";
 
             _typeTable = new global::System.Type[4];
-            _typeTable[0] = typeof(global::doExt.do_TextField.UserControlEx.TextFieldEx);
+            _typeTable[0] = typeof(global::do_TextField.do_TextField.UserControlEx.TextFieldEx);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.TextBox);
             _typeTable[3] = typeof(global::Windows.UI.Xaml.Controls.PasswordBox);
@@ -170,7 +170,7 @@ namespace do_TextField.do_TextField_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_0_TextFieldEx() { return new global::doExt.do_TextField.UserControlEx.TextFieldEx(); }
+        private object Activate_0_TextFieldEx() { return new global::do_TextField.do_TextField.UserControlEx.TextFieldEx(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -182,7 +182,7 @@ namespace do_TextField.do_TextField_XamlTypeInfo
             switch (typeIndex)
             {
 
-            case 0:   //  doExt.do_TextField.UserControlEx.TextFieldEx
+            case 0:   //  do_TextField.do_TextField.UserControlEx.TextFieldEx
                 userType = new global::do_TextField.do_TextField_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
                 userType.Activator = Activate_0_TextFieldEx;
                 userType.AddMemberName("MyTextBox");
@@ -209,12 +209,12 @@ namespace do_TextField.do_TextField_XamlTypeInfo
 
         private object get_0_TextFieldEx_MyTextBox(object instance)
         {
-            var that = (global::doExt.do_TextField.UserControlEx.TextFieldEx)instance;
+            var that = (global::do_TextField.do_TextField.UserControlEx.TextFieldEx)instance;
             return that.MyTextBox;
         }
         private object get_1_TextFieldEx_MyPasswordBox(object instance)
         {
-            var that = (global::doExt.do_TextField.UserControlEx.TextFieldEx)instance;
+            var that = (global::do_TextField.do_TextField.UserControlEx.TextFieldEx)instance;
             return that.MyPasswordBox;
         }
 
@@ -225,14 +225,14 @@ namespace do_TextField.do_TextField_XamlTypeInfo
 
             switch (longMemberName)
             {
-            case "doExt.do_TextField.UserControlEx.TextFieldEx.MyTextBox":
-                userType = (global::do_TextField.do_TextField_XamlTypeInfo.XamlUserType)GetXamlTypeByName("doExt.do_TextField.UserControlEx.TextFieldEx");
+            case "do_TextField.do_TextField.UserControlEx.TextFieldEx.MyTextBox":
+                userType = (global::do_TextField.do_TextField_XamlTypeInfo.XamlUserType)GetXamlTypeByName("do_TextField.do_TextField.UserControlEx.TextFieldEx");
                 xamlMember = new global::do_TextField.do_TextField_XamlTypeInfo.XamlMember(this, "MyTextBox", "Windows.UI.Xaml.Controls.TextBox");
                 xamlMember.Getter = get_0_TextFieldEx_MyTextBox;
                 xamlMember.SetIsReadOnly();
                 break;
-            case "doExt.do_TextField.UserControlEx.TextFieldEx.MyPasswordBox":
-                userType = (global::do_TextField.do_TextField_XamlTypeInfo.XamlUserType)GetXamlTypeByName("doExt.do_TextField.UserControlEx.TextFieldEx");
+            case "do_TextField.do_TextField.UserControlEx.TextFieldEx.MyPasswordBox":
+                userType = (global::do_TextField.do_TextField_XamlTypeInfo.XamlUserType)GetXamlTypeByName("do_TextField.do_TextField.UserControlEx.TextFieldEx");
                 xamlMember = new global::do_TextField.do_TextField_XamlTypeInfo.XamlMember(this, "MyPasswordBox", "Windows.UI.Xaml.Controls.PasswordBox");
                 xamlMember.Getter = get_1_TextFieldEx_MyPasswordBox;
                 xamlMember.SetIsReadOnly();
@@ -562,5 +562,6 @@ namespace do_TextField.do_TextField_XamlTypeInfo
         }
     }
 }
+
 
 

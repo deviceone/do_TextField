@@ -48,11 +48,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="doCore">
-      <HintPath>..\..\dll\doCore.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="resource\img.png" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="doCore">
+      <HintPath>..\..\dll\doCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

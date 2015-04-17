@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace doExt.extdefine
+namespace do_TextField.extdefine
 {
     public abstract class do_TextField_MAbstract : doUIModule
     {
