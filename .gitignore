@@ -4,4 +4,4 @@ bin/
 gen/
 .settings/
 proguard/
-/src/android/doExt_do_TextField/package.zip
+*.classpath
