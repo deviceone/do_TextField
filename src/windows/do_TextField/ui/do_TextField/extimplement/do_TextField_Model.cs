@@ -1,12 +1,12 @@
 ﻿using doCore.Object;
-using doExt.extdefine;
+using do_TextField.extdefine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace doExt.extimplement
+namespace do_TextField.extimplement
 {
     /// <summary>
     /// 自定义扩展组件Model实现，继承@TYPEID_MAbstract抽象类；
@@ -21,7 +21,7 @@ namespace doExt.extimplement
         {
             base.OnInit();
             this.RegistProperty(new doProperty("text", PropertyDataType.String, "", false));
-            this.RegistProperty(new doProperty("foreColor", PropertyDataType.String, "000000FF", false));
+            this.RegistProperty(new doProperty("fontColor", PropertyDataType.String, "000000FF", false));
             this.RegistProperty(new doProperty("fontSize", PropertyDataType.String, "9", false));
             this.RegistProperty(new doProperty("fontStyle", PropertyDataType.String, "normal", false));
             this.RegistProperty(new doProperty("hint", PropertyDataType.String, "", true));

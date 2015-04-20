@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // “用户控件”项模板在 http://go.microsoft.com/fwlink/?LinkId=234236 上提供
 
-namespace doExt.do_TextField.UserControlEx
+namespace do_TextField.do_TextField.UserControlEx
 {
     public partial class TextFieldEx : UserControl
     {

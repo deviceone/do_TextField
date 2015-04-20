@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="doExt.do_TextField.UserControlEx.TextFieldEx"
+    x:Class="do_TextField.do_TextField.UserControlEx.TextFieldEx"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:doBase.BaseAssemblys.UserControlEx"

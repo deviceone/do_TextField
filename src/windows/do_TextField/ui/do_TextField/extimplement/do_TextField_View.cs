@@ -2,7 +2,7 @@
 using doCore.Helper.JsonParse;
 using doCore.Interface;
 using doCore.Object;
-using doExt.extdefine;
+using do_TextField.extdefine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +18,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Text;
-using doExt.do_TextField.UserControlEx;
-using do_TextField.extdefine;
+using do_TextField.do_TextField.UserControlEx;
+using Windows.UI.Xaml.Input;
 
 namespace do_TextField.extimplement
 {
@@ -56,7 +56,8 @@ namespace do_TextField.extimplement
 
         void MyTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string aa = "";
+            doInvokeResult _invokeResult = new doInvokeResult(this.model.UniqueKey);
+            this.model.EventCenter.FireEvent("textChanged", _invokeResult);
         }
 
         public doUIModule GetModel()
@@ -84,37 +85,118 @@ namespace do_TextField.extimplement
             {
                 (this.Content as TextFieldEx).MyTextBox.Text = _changedValues["text"];
             }
-            if (_changedValues.Keys.Contains("foreColor"))
+            if (_changedValues.Keys.Contains("fontColor"))
             {
-                this.Foreground = doUIModuleHelper.GetColorFromString(_changedValues["foreColor"], new SolidColorBrush(Colors.Black));
+                (this.Content as TextFieldEx).MyTextBox.Foreground = doUIModuleHelper.GetColorFromString(_changedValues["fontColor"], new SolidColorBrush(Colors.Black));
             }
             if (_changedValues.Keys.Contains("fontSize"))
             {
-                this.FontSize = Convert.ToDouble(_changedValues["fontSize"]);
+                (this.Content as TextFieldEx).MyTextBox.FontSize = Convert.ToDouble(_changedValues["fontSize"]);
             }
             if (_changedValues.Keys.Contains("fontStyle"))
             {
-                if (_changedValues["fontStyle"].ToLower() == "normal")
-                {
-                    this.FontStyle = FontStyle.Normal;
-                    this.FontWeight = FontWeights.Normal;
-                }
-                else if (_changedValues["fontStyle"].ToLower() == "bold")
-                {
-                    this.FontWeight = FontWeights.Bold;
-                }
-                else if (_changedValues["fontStyle"].ToLower() == "italic")
-                {
-                    this.FontStyle = FontStyle.Italic;
-                }
+                SetFontStyle((this.Content as TextFieldEx).MyTextBox, _changedValues["fontStyle"]);
+
             }
             if (_changedValues.Keys.Contains("maxLength"))
             {
                 this.MaxWidth = Convert.ToDouble(_changedValues["maxLength"]);
             }
+            if (_changedValues.Keys.Contains("password"))
+            {
+                if (_changedValues["password"] == "true")
+                {
+                    (this.Content as TextFieldEx).MyPasswordBox.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    (this.Content as TextFieldEx).MyTextBox.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    (this.Content as TextFieldEx).MyPasswordBox.Password = (this.Content as TextFieldEx).MyTextBox.Text;
+
+                }
+                else
+                {
+                    (this.Content as TextFieldEx).MyPasswordBox.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    (this.Content as TextFieldEx).MyTextBox.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    (this.Content as TextFieldEx).MyTextBox.Text = (this.Content as TextFieldEx).MyPasswordBox.Password;
+                }
+            }
             if (_changedValues.Keys.Contains("hint"))
             {
                 (this.Content as TextFieldEx).MyTextBox.PlaceholderText = _changedValues["hint"];
+            }
+            if (_changedValues.Keys.Contains("bgColor"))
+            {
+                (this.Content as TextFieldEx).MyTextBox.Background = doUIModuleHelper.GetColorFromString(_changedValues["bgColor"], new SolidColorBrush());
+            }
+            if (_changedValues.Keys.Contains("inputType"))
+            {
+                SetInputType(_changedValues["inputType"]);
+            }
+        }
+
+        private void SetInputType(string type)
+        {
+            Windows.UI.Xaml.Input.InputScope scope = new Windows.UI.Xaml.Input.InputScope();
+            scope.Names.Clear();
+            switch (type.ToUpper())
+            {
+                case "ASC":
+                    scope.Names.Add(new InputScopeName()
+                    {
+                        NameValue = InputScopeNameValue.Default
+                    });
+                    break;
+                case "ENG":
+                    scope.Names.Add(new InputScopeName()
+                    {
+                        NameValue = InputScopeNameValue.Chat
+                    });
+                    break;
+                case "CHS":
+                    scope.Names.Add(new InputScopeName()
+                    {
+                        NameValue = InputScopeNameValue.ChineseHalfWidth
+                    });
+                    break;
+                case "NUM":
+                    scope.Names.Add(new InputScopeName()
+                    {
+                        NameValue = InputScopeNameValue.Number
+                    });
+                    break;
+                case "PHONENUMBER":
+                    scope.Names.Add(new InputScopeName()
+                    {
+                        NameValue = InputScopeNameValue.NameOrPhoneNumber
+                    });
+                    break;
+                case "URL":
+                    scope.Names.Add(new InputScopeName()
+                    {
+                        NameValue = InputScopeNameValue.Url
+                    });
+                    break;
+                default:
+                    scope.Names.Add(new InputScopeName()
+                    {
+                        NameValue = InputScopeNameValue.Default
+                    });
+                    break;
+            }
+            (this.Content as TextFieldEx).MyTextBox.InputScope = scope;
+        }
+        private void SetFontStyle(TextBox tb, string fontstyle)
+        {
+            if (fontstyle.ToLower() == "normal")
+            {
+                tb.FontStyle = FontStyle.Normal;
+                tb.FontWeight = FontWeights.Normal;
+            }
+            else if (fontstyle.ToLower() == "bold")
+            {
+                tb.FontWeight = FontWeights.Bold;
+            }
+            else if (fontstyle.ToLower() == "italic")
+            {
+                tb.FontStyle = FontStyle.Italic;
             }
         }
         /// <summary>
